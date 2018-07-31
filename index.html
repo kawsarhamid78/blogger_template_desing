@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    
+    <b:include data='blog' name='all-head-content'/>
+    <meta charset="utf-8" />
+
+    <b:if cond='data:blog.url != data:blog.homepageUrl'>
+      <title><data:blog.pageName/></title>
+    </b:if>
+    <b:if cond='data:blog.url == data:blog.homepageUrl'>
+       <title><data:blog.title/></title>
+    </b:if>
+   
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    
+    
+    <link rel="icon" type="image/png" href="https://hcastilla.github.io/imagenes/build/logo.png" />
+
+    <meta name="keywords" content="programacion, blog, personal, hernan castilla" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123027435-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-123027435-1');
+    </script>
+
+    <b:skin/>
+    <style>
+      /*<![CDATA[*/
+      *{
+        margin: 0px;
+        padding: 0px;
+        color: #212121;
+        font-family: 'Cabin',Helvetica, Arial, sans-serif !important;
+      }
+      
+      body{
+        font-size: 20px;
+        text-rendering: optimizeLegibilit;
+      }
+
+      a{
+        margin-left: 0em !important;
+        margin-right: 0em !important;
+        text-decoration: none;
+      }
+      header{
+        padding: 60px 0px;
+        background-color: #f3f3f3;
+      }
+      header h1{
+        font-size: 1.8em !important;
+        margin: 10px 0px;
+      }
+      header p{
+        color: #5f5f5f;
+        font-size: .9em !important;
+      }
+      .container{
+        width: 70%;
+        padding: 0px 15%;
+      }
+      .postsContainer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0px 10%;
+      }
+      .post{
+        width: 280px;
+        height: auto;
+        margin: 10px;
+        display: inline-block;
+        overflow: hidden;
+      }
+      .post__timestamp{
+        font-size: 14px;
+        float: right;
+      }
+      .post__title{
+        margin: 5px 0px;
+      }
+      .post__title h2{
+        font-size: 1.2em;
+      }
+      .post__thumbnail{
+        height: 200px;
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .post__thumbnail img{
+        width: 100%;
+        height: 100%
+      }
+      .post__tags ul{
+        list-style: none;
+        float: right;
+      }
+
+      .post__tags ul li{
+        display: inline-block;
+        font-size: 10px;
+        background: #ccc;
+        padding: 0px 5px;
+        border-radius: 2em;
+      }
+      
+      .post--full__header__title{
+        text-align: center;
+        font-size: 2.3em;
+      }
+      .post--full{
+        overflow: hidden;
+      }
+      .post--full__header{
+        margin: auto;
+        padding: 20px 0px;
+        width: 80%;
+      }
+      .post--full__header img{
+        width: 100%;
+      }
+      .post--full__header__img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        overflow: hidden;
+        height: 350px;
+      }
+
+      .post--full__content{
+        padding: 0 15%;
+      }
+      .post--full__content div{
+        text-align: unset !important;
+        overflow: auto;
+      }
+      .post--full__header__author{
+        display: flex;
+        justify-content: center;
+        font-size: .9em;
+        margin-bottom: 20px;
+      }
+
+      .post--full__header__author span{
+        margin: 0px 3px;
+      }
+
+      blockquote{
+        padding: 10px 10px;
+        border-right: 2px soliblack;
+        border-left: 3px solid #797979;
+        margin: 20px 0px;
+      }
+      
+      pre.prettyprint{
+        border: none !important;
+        overflow: auto;
+      }
+
+
+      
+      /*]]>*/
+    </style>
+    
+    <script src='https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js' async="true"/>
+  </head>
+
+  <body>
+    <!-- Datos Estructurados -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org/",
+        "@type": "Person",
+        "name": "Hernan Castilla",
+        "email": "hcastillaq@gmail.com",
+        "nationality": "Colombia",
+        "url":"https://www.facebook.com/hcastillaq",
+        "image": "https://pbs.twimg.com/profile_images/953638914312626176/2MCmHjXM_400x400.jpg",
+        "sameAs": ["https://www.twitter.com/hcastillaq", 
+          "https://www.medium.com/@hcastillaq", 
+          "https://www.youtube.com/c/HernanCastilla", "https://www.github.com/hcastilla"]
+      }
+    </script>
+
+    <header>
+      <b:section id="headerBlog" class="container">
+        <b:widget type="Blog" id="Blog1">
+          <b:includable id="main">
+              <a expr:href="data:blog.homepageUrl">
+                <h1 class="title">
+                  <u><data:title /></u>
+                </h1>
+              </a>
+              <p class="subtitle"><data:description/></p>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </header>
+
+    <b:section id="content" class="" maxwidgets=""  showaddelement="yes">
+      <b:widget  type="Blog" id="Blog2">
+        
+      <b:includable id="main">
+          
+        <!-- Loop Blogs -->
+          <b:if cond='data:blog.url == data:blog.homepageUrl'>  
+            <div class="postsContainer">
+              <b:loop var="post" values="data:posts">
+                <a expr:href="data:post.url">
+                  <div class="post" >
+                  <!-- 
+                    <div class="post__tags">
+                      <ul>
+                        <b:loop var="tag" values="data:post.labels">
+                            <li><data:tag.name/></li>
+                        </b:loop>
+                      </ul>
+                    </div>
+                  -->
+                    <div class="post__timestamp">
+                      <span><data:post.timestamp /></span>
+                    </div>
+
+                    <div class="post__thumbnail">
+                      <img expr:src="data:post.thumbnailUrl" 
+                        class="changeimgSize" expr:alt="data:post.title"/>
+                    </div>
+
+                    <div class="post__title">
+                      <h2 >
+                        <a expr:href="data:post.url">
+                          <data:post.title />
+                        </a>
+                      </h2>
+                    </div>
+                  </div>
+
+                </a>
+              </b:loop>
+            </div>
+          </b:if> 
+          <!-- Full Blog -->
+          <b:if cond='data:blog.url != data:blog.homepageUrl'> 
+            <b:loop var="post" values="data:posts">
+
+              <script type="application/ld+json">
+                {
+                  "@context": "http://schema.org",
+                  "@type": "NewsArticle",
+                  "author": {
+                    "@type": "Person",
+                    "name": "<data:post.author />"
+                  },
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "<data:post.url />"
+                  },
+                  "headline": "<data:post.title/>",
+                  "description": "<data:blog.metaDescription/>",
+                  "datePublished": "<data:post.timestamp />",
+                  "image": "<data:post.thumbnailUrl />",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "<data:post.author />",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://hcastilla.github.io/imagenes/build/logo.png"
+                    }
+                  }
+                }
+              </script>
+                
+              <div class="post--full">
+                  
+                <div class="post--full__header">
+                  <h2 class="post--full__header__title"><data:post.title /></h2>
+                  <div class="post--full__header__author">
+                    <strong><data:post.author/></strong>
+                    <pre> / </pre>
+                    <span><data:post.timestamp /> </span>
+                  </div>
+                  <div class="post--full__header__img">
+                    <img expr:src="data:post.thumbnailUrl" class="changeimgSize" expr:alt="data:post.title"/>
+                  </div>
+                </div> 
+
+                <div class="post--full__content">
+                  <data:post.body />
+                  <!--
+                  <b:if cond='data:post.showThreadedComments'>
+                    <b:include data='post' name='threaded_comments'/>
+                  <b:else/>
+                    <b:include data='post' name='comments'/>
+                  </b:if>
+                -->
+                
+                </div>
+              </div>
+            </b:loop>
+          </b:if>
+      </b:includable>
+
+      </b:widget>
+    </b:section>  
+
+    <script type='text/javascript'>
+      //<![CDATA[
+        var imgs = document.getElementsByClassName('changeimgSize');
+        for(var i = 0; i < imgs.length; i++){
+          imgs[i].src = imgs[i].src.replace('s72','s720');
+        }
+
+        var img = document.querySelectorAll('.post--full__content img')[0];
+        if(img){ img.parentElement.remove()};
+      //]]>
+    </script>
+    
+  </body>
+</html>
